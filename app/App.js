@@ -24,7 +24,7 @@ export default function App() {
 
   return (
     <Context>
-      <LoginScreen />
+      <RegisterationScreen />
     </Context>
   );
 }

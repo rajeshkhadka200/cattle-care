@@ -1,4 +1,4 @@
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
