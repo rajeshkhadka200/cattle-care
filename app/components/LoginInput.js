@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput, View, Text } from "react-native";
+import styles from "../styles/LoginScreen.design";
 
 function LoginInput({
   placeholder,
@@ -10,9 +11,10 @@ function LoginInput({
   label,
 }) {
   return (
-    <View>
-      <Text>{label}</Text>
+    <View style={styles.inputContainer}>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
+        style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
