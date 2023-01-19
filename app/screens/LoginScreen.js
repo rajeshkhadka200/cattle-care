@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState } from "react";
 
@@ -12,10 +12,13 @@ const Login = () => {
   return (
     <View style={styles.container}>
       {/* Header with motto */}
-      <View>
-        <Text>Cattle Care</Text>
-        <Text>Say goodbye to</Text>
-        <Text>scattered records & bad health</Text>
+      <View style={styles.titleContainer}>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>Cattle </Text>
+          <Text style={[styles.titleText, styles.titleTextSec]}>Care</Text>
+        </View>
+        <Text style={styles.detailText}>Say goodbye to</Text>
+        <Text style={styles.detailText}>scattered records & bad health</Text>
       </View>
       {/* Login form */}
 
@@ -40,8 +43,19 @@ const Login = () => {
         />
 
         {/* Login button */}
-        <Pressable onPress={() => console.warn("Login button pressed")}>
-          <Text>Login</Text>
+        <Pressable
+          style={styles.button}
+          onPress={() => console.warn("Login button pressed")}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </Pressable>
+        <Pressable
+          style={[styles.button, styles.secButton]}
+          onPress={() => console.warn("Login button pressed")}
+        >
+          <Text style={[styles.buttonText, styles.secButtonText]}>
+            Don't have an account ?
+          </Text>
         </Pressable>
       </View>
     </View>
