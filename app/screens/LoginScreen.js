@@ -1,6 +1,12 @@
 import { View, Text, TextInput, Pressable } from "react-native";
+import LoginInput from "../components/LoginInput";
+import { useState } from "react";
 
 const Login = () => {
+  const [values, setValues] = useState({
+    phone: "",
+    password: "",
+  });
   return (
     <View>
       {/* Header with motto */}
@@ -13,11 +19,23 @@ const Login = () => {
 
       <View>
         {/* Email input */}
-
-        <TextInput placeholder="Phone number" keyboardType="phone-pad" />
+        <LoginInput
+          placeholder="98675*****"
+          keyboardType="phone-pad"
+          onChangeText={(text) => setValues({ ...values, phone: text })}
+          value={values.phone}
+          label="Phone number"
+        />
 
         {/* Password input */}
-        <TextInput placeholder="Password" secureTextEntry={true} />
+
+        <LoginInput
+          placeholder="******"
+          keyboardType="default"
+          onChangeText={(text) => setValues({ ...values, password: text })}
+          value={values.password}
+          label="Password"
+        />
 
         {/* Login button */}
         <Pressable onPress={() => console.warn("Login button pressed")}>
