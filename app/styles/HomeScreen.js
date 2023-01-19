@@ -9,7 +9,7 @@ export default StyleSheet.create({
   TempCon: {
     borderTopLeftRadius: 17,
     borderTopRightRadius: 17,
-    backgroundColor: "#26C486",
+    backgroundColor: "#22AC77",
     width: "50%",
     padding: 30,
     position: "absolute",
