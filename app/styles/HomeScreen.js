@@ -83,4 +83,7 @@ export default StyleSheet.create({
     left: 150,
     zIndex: -1,
   },
+  flower: {
+    marginTop: 100,
+  },
 });
