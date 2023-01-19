@@ -6,6 +6,7 @@ import { connectDB } from "./db/connection.js";
 import auth from "./routes/auth.route.js";
 import income from "./routes/income.route.js";
 import cattle from "./routes/cattle.route.js";
+import expence from "./routes/expence.route.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api/user", auth);
 app.use("/api/cattle", cattle);
 app.use("/api/income", income);
+app.use("/api/expence", expence);
 
 // initialize the server
 const port = process.env.PORT || 5000;

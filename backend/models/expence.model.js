@@ -19,6 +19,6 @@ const expenceSchema = new mongoose.Schema({
   },
 });
 
-const Income = mongoose.model("Expence", expenceSchema);
+const Expence = mongoose.model("Expence", expenceSchema);
 
 export default mongoose.models.Expence || Expence;
