@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -14,16 +14,12 @@ const Login = ({ navigation }) => {
   });
 
   const [error, setError] = useState("");
-
-  const { user, setUser } = useContext(cp);
-
-  console.log(user);
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useContext(cp);
 
   const handleError = (error) => {
     const message = error.error || error.response.data.error || error.message;
     setError(message);
-
-    console.log(message);
 
     setTimeout(() => {
       setError("");
@@ -32,6 +28,9 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
+      //start loading
+      setLoading(true);
+
       const { data } = await axios({
         method: "post",
         url: `http://157.245.106.197:5000/api/user/login`,
@@ -52,6 +51,8 @@ const Login = ({ navigation }) => {
     } catch (error) {
       handleError(error);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,7 +95,8 @@ const Login = ({ navigation }) => {
 
         {/* Login button */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Login </Text>
+          {loading && <ActivityIndicator color="white" />}
         </TouchableOpacity>
 
         <TouchableOpacity

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -14,25 +14,25 @@ const Registration = ({ navigation }) => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleError = (error) => {
     const message = error.error || error.response.data.error || error.message;
     setError(message);
 
-    console.log(message);
-
     setTimeout(() => {
       setError("");
     }, 5000);
   };
 
-  const { user, setUser } = useContext(cp);
-
-  console.log(user);
+  const { setUser } = useContext(cp);
 
   const handleRegister = async () => {
     try {
+      //start loading
+      setLoading(true);
+
       const { data } = await axios({
         method: "post",
         url: `http://157.245.106.197:5000/api/user/register`,
@@ -54,6 +54,8 @@ const Registration = ({ navigation }) => {
     } catch (error) {
       handleError(error);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,7 +106,8 @@ const Registration = ({ navigation }) => {
 
         {/* Registration button */}
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Register </Text>
+          {loading && <ActivityIndicator color="white" />}
         </TouchableOpacity>
 
         <TouchableOpacity
