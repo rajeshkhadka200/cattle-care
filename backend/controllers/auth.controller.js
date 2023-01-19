@@ -25,20 +25,25 @@ export const login = async (req, res) => {
   const { phone, password } = req.body;
   try {
     const user = await User.findOne({ phone }).select("+password");
+
+    // check if user exists
     if (!user) {
       return res
         .status(404)
         .json({ success: false, error: "User doesn't exist" });
     }
-    const isMatch = await user.matchPasswords(password);
+
+    // check if password is correct
+    const isMatch = (await user.password) == password;
     if (!isMatch) {
       return res
         .status(404)
         .json({ success: false, error: "Invalid Password" });
     }
 
+    // send user
     res.status(200).json({ success: true, data: user });
   } catch (error) {
-    res.status(500).json({ success: false, error: "Server error" });
+    res.status(500).json({ success: false, error: error });
   }
 };
