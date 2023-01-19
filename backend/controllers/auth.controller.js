@@ -1,5 +1,5 @@
 //import schema
-import User from "../models/auth.js";
+import User from "../models/auth.model.js";
 
 // register new user
 export const register = async (req, res) => {
