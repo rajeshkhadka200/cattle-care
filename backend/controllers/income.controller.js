@@ -106,3 +106,63 @@ export const getIncomeById = (req, res) => {
     console.log(error);
   }
 };
+
+// Update an income identified by the id in the request
+export const updateIncome = async (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  try {
+    const id = req.params.id;
+
+    const income = await Income.findByIdAndUpdate(id, req.body);
+
+    if (!income) {
+      res.status(404).send({
+        message: `Cannot update income with id=${id}. Maybe income was not found!`,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        data: income,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message || "Some error occurred while updating income.",
+    });
+    console.log(error);
+  }
+};
+
+// Delete an income with the specified id in the request
+export const deleteIncome = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const income = await Income.findByIdAndRemove(id);
+
+    console.log(income);
+
+    if (!income) {
+      res.status(404).send({
+        message: `Cannot delete income with id=${id}. Maybe income was not found!`,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        data: income,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message || "Some error occurred while deleting income.",
+    });
+    console.log(error);
+  }
+};
