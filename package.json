@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@react-navigation/native": "^6.1.2",
+    "@react-navigation/native-stack": "^6.9.8",
+    "react-native-svg": "^13.7.0",
+    "react-native-svg-transformer": "^1.0.0"
+  }
+}
