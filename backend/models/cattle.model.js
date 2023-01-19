@@ -7,6 +7,7 @@ const cattleSchema = new mongoose.Schema({
   gender: { type: String, required: true },
   dob: { type: String, required: true },
   cost: { type: String },
+  user_id: { type: String, required: true },
 });
 
 // Creating model for cattle
