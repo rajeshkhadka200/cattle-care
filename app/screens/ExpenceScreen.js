@@ -18,6 +18,14 @@ const ExpenceScreen = () => {
         </View>
         <ScrollView style={styles.greenBox}>
           <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <ExpenceList />
+          <View style={styles.empty}></View>
         </ScrollView>
       </View>
     </>

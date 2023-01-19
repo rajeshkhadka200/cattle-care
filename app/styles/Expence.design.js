@@ -36,8 +36,8 @@ export const styles = StyleSheet.create({
   },
   addContainer: {
     marginBottom: 20,
-    height: 50,
-    width: 50,
+    height: 65,
+    width: 65,
     borderRadius: 100,
     backgroundColor: "#FEBA47",
     display: "flex",
@@ -45,7 +45,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   plus: {
-    fontSize: 30,
+    fontSize: 40,
+    color: "#fff",
   },
 
   greenBox: {
@@ -58,7 +59,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     ovwerflow: "hidden",
     paddingVertical: 50,
-    borderWidth: 2,
-    borderColor: "red",
+  },
+  empty: {
+    height: 60,
   },
 });
