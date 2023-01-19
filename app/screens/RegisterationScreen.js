@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const MainHeader = () => {
+const RegisterationScreen = () => {
   return (
     <View>
-      <Text>MainHeader</Text>
+      <Text>RegisterationScreen</Text>
     </View>
   )
 }
 
-export default MainHeader
+export default RegisterationScreen
