@@ -1,12 +1,22 @@
-/app/.env.local
-/app/.env
-/app/node_modules
-/app/package-lock.json
-app/yarn.lock
 
 # server
-/backend/.env
-/backend/node_modules
-/backend/package-lock.json
-/backend/yarn.lock
+backend/.env
+backend/node_modules
+backend/package-lock.json
+backend/yarn.lock
 
+# client
+app/node_modules/
+app/.expo/
+app/dist/
+app/npm-debug.*
+app/*.jks
+app/*.p8
+app/*.p12
+app/*.key
+app/*.mobileprovision
+app/*.orig.*
+app/web-build/
+
+# macOS
+.DS_Store
