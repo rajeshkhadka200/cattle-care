@@ -14,7 +14,7 @@ export const register = async (req, res) => {
     }
 
     const newUser = await User.create({ phone, password, farmName });
-    res.status(201).json({ success: true, data: newUuser });
+    res.status(201).json({ success: true, data: newUser });
   } catch (error) {
     res.status(400).json({ success: false, error });
   }
