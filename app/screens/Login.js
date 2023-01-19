@@ -2,13 +2,15 @@ import { View, Text, TextInput, Pressable } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState } from "react";
 
+import styles from "../styles/LoginScreen.design";
+
 const Login = () => {
   const [values, setValues] = useState({
     phone: "",
     password: "",
   });
   return (
-    <View>
+    <View style={styles.container}>
       {/* Header with motto */}
       <View>
         <Text>Cattle Care</Text>
@@ -17,7 +19,7 @@ const Login = () => {
       </View>
       {/* Login form */}
 
-      <View>
+      <View style={styles.form}>
         {/* Email input */}
         <LoginInput
           placeholder="98675*****"
