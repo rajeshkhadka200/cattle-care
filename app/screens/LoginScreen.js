@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -75,17 +75,18 @@ const Login = () => {
         />
 
         {/* Login button */}
-        <Pressable style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+
+        <TouchableOpacity
           style={[styles.button, styles.secButton]}
           onPress={() => console.warn("Don't have an account ?")}
         >
           <Text style={[styles.buttonText, styles.secButtonText]}>
             Don't have an account ?
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
