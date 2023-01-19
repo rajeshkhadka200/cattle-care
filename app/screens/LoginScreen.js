@@ -13,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const [error, setError] = useState("This is an error text");
+  const [error, setError] = useState("");
 
   const { user, setUser } = useContext(cp);
 
