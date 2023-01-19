@@ -1,5 +1,5 @@
 //import schema
-import User from "../models/auth";
+import User from "../models/auth.js";
 
 // register new user
 export const register = async (req, res) => {
@@ -8,7 +8,7 @@ export const register = async (req, res) => {
     const user = await User.create({ phone, password, farmName });
     res.status(201).json({ success: true, data: user });
   } catch (error) {
-    res.status(400).json({ success: false });
+    res.status(400).json({ success: false, error });
   }
 };
 

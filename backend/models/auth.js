@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const AuthSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   phone: {
     type: Number,
     required: [true, "Please add a phone number"],
@@ -19,4 +19,4 @@ const AuthSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Auth || mongoose.model("Auth", AuthSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema);
