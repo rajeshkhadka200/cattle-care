@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React, { useContext } from "react";
 import UpperNav from "../components/UpperNav.js";
 
@@ -10,11 +10,16 @@ import Cattle from "../assets/svg/cow.svg";
 import Health from "../assets/svg/heart.svg";
 import Income from "../assets/svg/income.svg";
 import Expense from "../assets/svg/expense.svg";
+import Steam from "../assets/svg/steam.svg";
 
 // styles
 import styles from "../styles/HomeScreen.js";
 
+// navigation controller
+import { useNavigation } from "@react-navigation/native";
+
 const HomeScreen = () => {
+  const navigator = useNavigation();
   const data = useContext(cp);
 
   const minTemp = "45 °C";
@@ -27,26 +32,62 @@ const HomeScreen = () => {
 
       {/* flower */}
       <View style={styles.flower}>
-        <View style={styles.pettle}>
-          <View style={styles.cattle}>
-            <Cattle />
-            <Text style={styles.txt}>Cattle</Text>
+        <View style={styles.pettleGrp}>
+          <View style={styles.pettle}>
+            <Pressable
+              onPress={() => {
+                // console.log("navigating");
+                navigator.navigate("CattleScreen");
+              }}
+            >
+              <View style={[styles.thungo, styles.cattle]}>
+                <Cattle />
+                <Text style={styles.txt}>Cattle</Text>
+              </View>
+            </Pressable>
+
+            <Pressable
+              onPress={() => {
+                // console.log("navigating");
+                navigator.navigate("HealthScreen");
+              }}
+            >
+              <View style={[styles.thungo, styles.health]}>
+                <Health />
+                <Text style={styles.txt}>Health</Text>
+              </View>
+            </Pressable>
           </View>
 
-          <View style={styles.health}>
-            <Health />
-            <Text style={styles.txt}>Health</Text>
-          </View>
+          <View style={styles.pettle}>
+            <Pressable
+              onPress={() => {
+                // console.log("navigating");
+                navigator.navigate("IncomeScreen");
+              }}
+            >
+              <View style={[styles.thungo, styles.income]}>
+                <Income />
+                <Text style={styles.txt}>Income</Text>
+              </View>
+            </Pressable>
 
-          <View style={styles.income}>
-            <Income />
-            <Text style={styles.txt}>Income</Text>
+            <Pressable
+              onPress={() => {
+                // console.log("navigating");
+                navigator.navigate("ExpenceScreen");
+              }}
+            >
+              <View style={[styles.thungo, styles.expense]}>
+                <Expense />
+                <Text style={styles.txt}>Expense</Text>
+              </View>
+            </Pressable>
           </View>
-
-          <View style={styles.expense}>
-            <Expense />
-            <Text style={styles.txt}>Expense</Text>
-          </View>
+          <View style={styles.circle}></View>
+        </View>
+        <View style={styles.steam}>
+          <Steam />
         </View>
       </View>
 
