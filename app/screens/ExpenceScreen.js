@@ -1,9 +1,27 @@
-import React from 'react'
+import { View, Text, ScrollView } from "react-native";
+import { styles } from "../styles/Expence.design.js";
+import React from "react";
+import ExpenceList from "../components/ExpenceList.js";
 
-function Expence() {
+const ExpenceScreen = () => {
   return (
-    <div>Expence</div>
-  )
-}
+    <>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <Text style={styles.rsHeading}>Rs. 1500.59</Text>
+          <Text style={styles.rsSmall}>Total Spendings</Text>
+          <View style={styles.rightCon}>
+            <View style={styles.addContainer}>
+              <Text style={styles.plus}>+</Text>
+            </View>
+          </View>
+        </View>
+        <ScrollView style={styles.greenBox}>
+          <ExpenceList />
+        </ScrollView>
+      </View>
+    </>
+  );
+};
 
-export default Expence
+export default ExpenceScreen;
