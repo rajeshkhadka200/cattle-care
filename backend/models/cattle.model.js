@@ -10,5 +10,4 @@ const cattleSchema = new mongoose.Schema({
 });
 
 // Creating model for cattle
-const blogModal = mongoose.model("cattle", cattleSchema);
-export default cattleSchema;
+export default mongoose.models.Cattle || mongoose.model("Cattle", cattleSchema);

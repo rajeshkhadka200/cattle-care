@@ -1,21 +1,13 @@
-// add the male cattle
+// add the  cattle
 
-export const addMaleCattle = async (req, res) => {
+import Cattle from "../models/cattle.model.js";
+
+export const addCattle = async (req, res) => {
+  const { name, gender, dob, cost } = req.body;
   try {
-    const { name, dob, cost } = req.body;
-    //save cattle to db
-    const newCattle = new Cattle({
-      name,
-      dob,
-      cost,
-    });
-    await newCattle.save();
-    res.status(200).json({
-      message: "added male cattle successfully",
-    });
+    const cattle = await Cattle.create({ name, gender, dob, cost });
+    res.status(201).json({ success: true, data: cattle });
   } catch (error) {
-    res.status(400).json({
-      message: "error while uploading",
-    });
+    res.status(400).json({ success: false, error });
   }
 };

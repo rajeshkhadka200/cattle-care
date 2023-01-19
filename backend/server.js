@@ -4,6 +4,7 @@ import { connectDB } from "./db/connection.js";
 
 // import routes
 import auth from "./routes/auth.js";
+import cattle from "./routes/cattle.route.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // mount routers
 app.use("/api/user", auth);
+app.use("/api/cattle", cattle);
 
 // initialize the server
 const port = process.env.PORT || 5000;
