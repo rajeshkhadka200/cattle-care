@@ -20,7 +20,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   // default route
-  const [defaultScreen, setDefaultScreen] = useState("HomeScreen");
+  const [defaultScreen, setDefaultScreen] = useState("RegisterationScreen");
 
   return (
     <Context>

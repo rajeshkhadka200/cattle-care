@@ -7,7 +7,7 @@ import { cp } from "../Context.js";
 
 import styles from "../styles/LoginScreen.design.js";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [values, setValues] = useState({
     phone: "",
     password: "",
@@ -47,7 +47,8 @@ const Login = () => {
         phone: data.data.phone,
       });
 
-      console.log(data);
+      //redirect
+      navigation.navigate("HomeScreen");
     } catch (error) {
       handleError(error);
       console.log(error);
@@ -98,7 +99,7 @@ const Login = () => {
 
         <TouchableOpacity
           style={[styles.button, styles.secButton]}
-          onPress={() => console.warn("Don't have an account ?")}
+          onPress={() => navigation.navigate("RegisterationScreen")}
         >
           <Text style={[styles.buttonText, styles.secButtonText]}>
             Don't have an account ?
