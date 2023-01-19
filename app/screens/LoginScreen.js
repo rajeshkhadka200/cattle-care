@@ -1,14 +1,45 @@
 import { View, Text, Pressable } from "react-native";
 import LoginInput from "../components/LoginInput";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import axios from "axios";
 
-import styles from "../styles/LoginScreen.design";
+import { cp } from "../Context.js";
+
+import styles from "../styles/LoginScreen.design.js";
 
 const Login = () => {
   const [values, setValues] = useState({
     phone: "",
     password: "",
   });
+
+  const { user, setUser } = useContext(cp);
+
+  console.log(user);
+
+  const handleLogin = async () => {
+    try {
+      const { data } = await axios({
+        method: "post",
+        url: `http://157.245.106.197:5000/api/user/login`,
+        data: {
+          phone: values.phone,
+          password: values.password,
+        },
+      });
+
+      // save to context
+      setUser({
+        id: data.data._id,
+        phone: data.data.phone,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Header with motto */}
@@ -39,19 +70,17 @@ const Login = () => {
           keyboardType="default"
           onChangeText={(text) => setValues({ ...values, password: text })}
           value={values.password}
+          secureTextEntry={true}
           label="Password"
         />
 
         {/* Login button */}
-        <Pressable
-          style={styles.button}
-          onPress={() => console.warn("Login button pressed")}
-        >
+        <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
         <Pressable
           style={[styles.button, styles.secButton]}
-          onPress={() => console.warn("Login button pressed")}
+          onPress={() => console.warn("Don't have an account ?")}
         >
           <Text style={[styles.buttonText, styles.secButtonText]}>
             Don't have an account ?

@@ -11,6 +11,8 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
+    "axios": "^1.2.3",
+    "babel-preset-react-native": "2.1.0",
     "expo": "^47.0.13",
     "expo-status-bar": "~1.4.2",
     "metro-core": "^0.74.0",

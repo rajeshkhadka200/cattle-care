@@ -1,10 +1,12 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 // cp means context provider
 export const cp = createContext();
 
 const Context = ({ children }) => {
-  return <cp.Provider value={"Hi i am context"}>{children}</cp.Provider>;
+  const [user, setUser] = useState(null);
+
+  return <cp.Provider value={{ user, setUser }}>{children}</cp.Provider>;
 };
 
 export default Context;
