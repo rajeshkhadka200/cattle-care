@@ -1,11 +1,12 @@
 import express from "express";
+import dotenv from "dotenv";
+
+// load env vars
+dotenv.config();
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
+// initialize the server
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
