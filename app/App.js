@@ -23,74 +23,79 @@ export default function App() {
   const [defaultScreen, setDefaultScreen] = useState("HomeScreen");
 
   return (
-    // <Context>
-    //   <NavigationContainer>
-    //     <Stack.Navigator initialRouteName={defaultScreen}>
-    //       {/* home screen */}
-    //       <Stack.Screen
-    //         component={HomeScreen}
-    //         name="HomeScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
+    <Context>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={defaultScreen}>
+          {/* home screen */}
+          <Stack.Screen
+            component={HomeScreen}
+            name="HomeScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
 
-    //       {/* health screen */}
-    //       <Stack.Screen
-    //         component={HealthScreen}
-    //         name="HealthScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
+          {/* health screen */}
+          <Stack.Screen
+            component={HealthScreen}
+            name="HealthScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
 
-    //       {/* Expence screen */}
-    //       <Stack.Screen
-    //         component={ExpenceScreen}
-    //         name="ExpenceScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
+          {/* Expence screen */}
+          <Stack.Screen
+            component={ExpenceScreen}
+            name="ExpenceScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
 
-    //       {/* Income screen */}
-    //       <Stack.Screen
-    //         component={IncomeScreen}
-    //         name="IncomeScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
+          {/* Income screen */}
+          <Stack.Screen
+            component={IncomeScreen}
+            name="IncomeScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
 
-    //       {/* Login screen */}
-    //       <Stack.Screen
-    //         component={LoginScreen}
-    //         name="LoginScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
+          {/* Login screen */}
+          <Stack.Screen
+            component={LoginScreen}
+            name="LoginScreen"
+            options={{
+              headerShown: false,
+              animation: "zoom_in",
+            }}
+          />
 
-    //       {/* Registeration screen */}
-    //       <Stack.Screen
-    //         component={RegisterationScreen}
-    //         name="RegisterationScreen"
-    //         options={{
-    //           headerShown: false,
-    //           animation: "none",
-    //         }}
-    //       />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </Context>
-    <>
-      {/* <ExpenceScreen /> */}
-      <HealthScreen />
-    </>
+          {/* Registeration screen */}
+          <Stack.Screen
+            component={RegisterationScreen}
+            name="RegisterationScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_left",
+            }}
+          />
+
+          <Stack.Screen
+            component={HealthScreen}
+            name="Health"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Context>
   );
 }

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   image: {
-    height: 200,
+    height: 170,
     width: "100%",
   },
   subHeading: {

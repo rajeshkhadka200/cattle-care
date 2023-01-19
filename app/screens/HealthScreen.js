@@ -3,6 +3,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../styles/Health.design.js";
 import DiseaseCard from "../components/DiseaseCard.js";
+import MainHeader from "../components/MainHeader.js";
 
 const HealthScreen = () => {
   const data = [
@@ -48,23 +49,26 @@ const HealthScreen = () => {
     },
   ];
   return (
-    <ScrollView>
+    <>
       <SafeAreaView>
-        <View style={styles.wrapper}>
-          <Text style={styles.heading}>Protect cattles</Text>
-          <Text style={styles.small_text}>
-            Cattles require scheduled vaccination and health care like we do.
-          </Text>
+        <ScrollView>
+          <MainHeader title={"Health"} />
+          <View style={styles.wrapper}>
+            <Text style={styles.heading}>Protect cattles</Text>
+            <Text style={styles.small_text}>
+              Cattles require scheduled vaccination and health care like we do.
+            </Text>
 
-          {/* wrapper for card */}
-          <View style={styles.con_disease}>
-            {data.map((data, i) => {
-              return <DiseaseCard key={i} data={data} />;
-            })}
+            {/* wrapper for card */}
+            <View style={styles.con_disease}>
+              {data.map((data, i) => {
+                return <DiseaseCard key={i} data={data} />;
+              })}
+            </View>
           </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
-    </ScrollView>
+    </>
   );
 };
 

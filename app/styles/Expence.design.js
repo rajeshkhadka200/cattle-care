@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   container: {
-    marginTop: 180,
+    marginTop: 30,
     marginBottom: 10,
     marginHorizontal: 20,
     // borderColor: "red",
@@ -61,6 +61,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   empty: {
-    height: 60,
+    height: 140,
   },
 });
