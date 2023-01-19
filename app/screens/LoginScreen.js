@@ -13,9 +13,22 @@ const Login = () => {
     password: "",
   });
 
+  const [error, setError] = useState("This is an error text");
+
   const { user, setUser } = useContext(cp);
 
   console.log(user);
+
+  const handleError = (error) => {
+    const message = error.error || error.response.data.error || error.message;
+    setError(message);
+
+    console.log(message);
+
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
 
   const handleLogin = async () => {
     try {
@@ -36,6 +49,7 @@ const Login = () => {
 
       console.log(data);
     } catch (error) {
+      handleError(error);
       console.log(error);
     }
   };
@@ -73,6 +87,9 @@ const Login = () => {
           secureTextEntry={true}
           label="Password"
         />
+
+        {/* Error text */}
+        <Text style={styles.errorText}>{error}</Text>
 
         {/* Login button */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>

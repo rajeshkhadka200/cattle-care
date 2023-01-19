@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     color: "#808080",
     fontSize: 14,
   },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+  },
   form: {
     paddingHorizontal: 20,
     paddingTop: 40,
