@@ -7,8 +7,14 @@ import {
   Modal,
   ScrollView,
   Pressable,
+  RadioNodeList,
 } from "react-native";
 import MainHeader from "../components/MainHeader";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from "react-native-simple-radio-button";
 
 import styles from "../styles/CattleDetailsScreen.design.js";
 import { useNavigation } from "@react-navigation/native";
@@ -23,24 +29,79 @@ const CattleDetailsScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [price, setPrice] = useState(null);
 
+  const [selected, setSelected] = useState({});
+
+  var radio_props = [
+    { label: "Male", value: "ox" },
+    { label: "Female", value: "cow" },
+  ];
+
+  const [gender, setGender] = useState("ox");
+
   const data = [
     {
       name: "Darrel Khadka",
       age: "21 months old",
+      gender: "cow",
     },
     {
       name: "Rajesh Khadka",
       age: "21 months old",
+      gender: "cow",
     },
     {
       name: "Rajesh Bachho",
       age: "21 months old",
+      gender: "ox",
     },
     {
       name: "Basanti",
       age: "21 months old",
+      gender: "cow",
     },
   ];
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const saveCattle = async () => {
+    console.log("saveCattle");
+
+    try {
+      //start loading
+      setLoading(true);
+
+      const { data } = await axios({
+        method: "post",
+        url: `http://157.245.106.197:5000/api/cattle/addcattle`,
+        data: {
+          user_id: user.id,
+          name: values.name,
+          dob: values.dob,
+          gender: gender,
+          cost: values.price,
+        },
+      });
+
+      console.log(data);
+
+      setModalVisible(!modalVisible);
+    } catch (error) {
+      handleError(error);
+      //   console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleError = (error) => {
+    const message = error.error || error.response.data.error || error.message;
+    setError(message);
+
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
 
   return (
     <View style={[styles.container, { paddingTop: 30 }]}>
@@ -54,7 +115,10 @@ const CattleDetailsScreen = () => {
           <View style={styles.cardContainer}>
             {data.map(({ name, age }, index) => (
               <TouchableOpacity
-                onPress={() => navigation.navigate("CattleDetails")}
+                onPress={() => {
+                  setSelected(data[index]);
+                  setModalVisible(true);
+                }}
                 style={styles.card}
                 key={index}
               >
@@ -82,43 +146,109 @@ const CattleDetailsScreen = () => {
             visible={modalVisible}
             onRequestClose={() => {
               setModalVisible(!modalVisible);
+              setSelected({});
             }}
           >
-            <View style={styles.popup}>
-              <View style={styles.head}>
-                <View style={styles.details}>
-                  <Text style={styles.popupTitle}>Basanti</Text>
-                  <Text style={styles.popupSubtitle}>21 months old cow</Text>
+            {selected?.name ? (
+              <View style={styles.popup}>
+                <View style={styles.head}>
+                  <View style={styles.details}>
+                    <Text style={styles.popupTitle}>{selected.name}</Text>
+                    <Text style={styles.popupSubtitle}>
+                      {selected.age} {selected.gender}
+                    </Text>
+                  </View>
+                  <Image
+                    source={require("../assets/cattles/gai_basanti.jpg")}
+                    style={styles.popupImage}
+                  ></Image>
                 </View>
-                <Image
-                  source={require("../assets/cattles/gai_basanti.jpg")}
-                  style={styles.popupImage}
-                ></Image>
+
+                <View style={styles.body}>
+                  <LoginInput
+                    placeholder="Selling Price"
+                    keyboardType="numeric"
+                    value={price}
+                    onChangeText={(text) => setPrice(text)}
+                  />
+
+                  {/* Error text */}
+                  <Text style={styles.errorText}>{error}</Text>
+
+                  <Button
+                    text="Sell Cow"
+                    handleLogin={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                  />
+                  <LightButton
+                    text="Cow no more?"
+                    handleLogin={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                  />
+                </View>
               </View>
+            ) : (
+              <View
+                style={[
+                  styles.popup,
+                  {
+                    height: "75%",
+                  },
+                ]}
+              >
+                <View style={styles.head}>
+                  <View style={styles.details}>
+                    <Text style={styles.popupTitle}>Add new cattle</Text>
+                  </View>
+                </View>
 
-              <View style={styles.body}>
-                <LoginInput
-                  placeholder="Selling Price"
-                  keyboardType="numeric"
-                  value={price}
-                  onChangeText={(text) => setPrice(text)}
-                />
+                <View style={styles.body}>
+                  <LoginInput
+                    placeholder="Basanti"
+                    keyboardType={"default"}
+                    label={"Name"}
+                  />
+                  <LoginInput
+                    placeholder="2022-01-01"
+                    label={"Date of Birth"}
+                    keyboardType={"default"}
+                  />
 
-                <Button
-                  text="Sell Cow"
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                />
+                  <LoginInput
+                    placeholder="200"
+                    keyboardType={"numeric"}
+                    label={"Price"}
+                  />
 
-                <LightButton
-                  text="Cow no more?"
-                  handleOnPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                />
+                  <RadioForm
+                    radio_props={radio_props}
+                    initial={"ox"}
+                    formHorizontal={false}
+                    labelHorizontal={true}
+                    buttonColor={"#2196f3"}
+                    animation={true}
+                    onPress={(value) => {
+                      setGender(value);
+                      console.log(value);
+                    }}
+                  />
+
+                  {/* Error text */}
+                  <Text style={styles.errorText}>{error}</Text>
+
+                  <Button
+                    text="Add Cattle"
+                    loading={loading}
+                    handleLogin={() => {
+                      console.log("add cattle");
+                      saveCattle();
+                    }}
+                  />
+                </View>
               </View>
-            </View>
+            )}
           </Modal>
         </Pressable>
       )}
