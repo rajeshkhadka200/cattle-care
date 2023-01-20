@@ -14,6 +14,25 @@ import { useNavigation } from "@react-navigation/native";
 const CattleDetailsScreen = () => {
   const navigation = useNavigation();
 
+  const data = [
+    {
+      name: "Darrel Khadka",
+      age: "21 months old",
+    },
+    {
+      name: "Rajesh Khadka",
+      age: "21 months old",
+    },
+    {
+      name: "Rajesh Bachho",
+      age: "21 months old",
+    },
+    {
+      name: "Basanti",
+      age: "21 months old",
+    },
+  ];
+
   return (
     <View style={[styles.container, { paddingTop: 30 }]}>
       <MainHeader title={"Cows"} />
@@ -24,19 +43,21 @@ const CattleDetailsScreen = () => {
           <Text style={styles.lightTitle}>Your farm has 180 cows</Text>
 
           <View style={styles.cardContainer}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("CattleDetails")}
-              style={styles.card}
-            >
-              <View>
-                <Text style={styles.name}>Darrel Khadka</Text>
-                <Text style={styles.age}>21 months old</Text>
-              </View>
-              <Image
-                source={require("../assets/cattles/gai_basanti.jpg")}
-                style={styles.image}
-              ></Image>
-            </TouchableOpacity>
+            {data.map(({ name, age }, index) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CattleDetails")}
+                style={styles.card}
+              >
+                <View>
+                  <Text style={styles.name}>{name}</Text>
+                  <Text style={styles.age}>{age}</Text>
+                </View>
+                <Image
+                  source={require("../assets/cattles/gai_basanti.jpg")}
+                  style={styles.image}
+                ></Image>
+              </TouchableOpacity>
+            ))}
           </View>
         </ScrollView>
       </SafeAreaView>
