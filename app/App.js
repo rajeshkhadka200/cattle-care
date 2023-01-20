@@ -14,13 +14,14 @@ import ExpenceScreen from "./screens/ExpenceScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
+import CattlesScreen from "./screens/CattlesScreen.js";
 
 export default function App() {
   // creating the custom navigation stack
   const Stack = createNativeStackNavigator();
 
   // default route
-  const [defaultScreen, setDefaultScreen] = useState("RegisterationScreen");
+  const [defaultScreen, setDefaultScreen] = useState("LoginScreen");
 
   return (
     <Context>
@@ -80,6 +81,16 @@ export default function App() {
           <Stack.Screen
             component={RegisterationScreen}
             name="RegisterationScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
+            }}
+          />
+
+          {/* Cattles screen */}
+          <Stack.Screen
+            component={CattlesScreen}
+            name="CattleScreen"
             options={{
               headerShown: false,
               animation: "none",
