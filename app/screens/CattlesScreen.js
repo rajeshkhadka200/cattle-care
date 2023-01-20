@@ -24,7 +24,7 @@ const CattleScreen = () => {
 
           <View style={styles.cardContainer}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("CattleDetails")}
+              onPress={() => navigation.navigate("CattleDetailScreen")}
               style={[
                 styles.card,
                 {
@@ -39,7 +39,7 @@ const CattleScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("CattleDetails")}
+              onPress={() => navigation.navigate("CattleDetailScreen")}
               style={[
                 styles.card,
                 {
@@ -54,7 +54,7 @@ const CattleScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("CattleDetails")}
+              onPress={() => navigation.navigate("CattleDetailScreen")}
               style={[
                 styles.card,
                 {
@@ -69,7 +69,7 @@ const CattleScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("CattleDetails")}
+              onPress={() => navigation.navigate("CattleDetailScreen")}
               style={[
                 styles.card,
                 {
