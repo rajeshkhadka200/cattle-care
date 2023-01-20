@@ -5,9 +5,9 @@ import ExpenceList from "../components/ExpenceList.js";
 import MainHeader from "../components/MainHeader.js";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
-import { Context } from "../context/Context.js";
+import { cp } from "../Context.js";
 const ExpenceScreen = () => {
-  const { user } = useContext(Context);
+  const { user } = useContext(cp);
   console.log(user);
   useEffect(async () => {
     try {
