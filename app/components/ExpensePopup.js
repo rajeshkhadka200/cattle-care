@@ -22,6 +22,7 @@ const ExpensePopup = () => {
       expense: [expensePop, setExpensePop],
     },
   } = useContext(cp);
+  console.log(expensePop);
 
   //   drop down one states
   const [d1open, setd1Open] = useState(false);

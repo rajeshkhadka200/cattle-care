@@ -15,6 +15,9 @@ import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
 import NotificationScreen from "./screens/NotificationScreen.js";
+import DiseaseDetailsScreen from "./screens/DiseaseDetailsScreen.js";
+import CattlesScreen from "./screens/CattlesScreen.js";
+import CattleDetailScreen from "./screens/CattleDetails.js";
 
 export default function App() {
   // creating the custom navigation stack
@@ -33,7 +36,7 @@ export default function App() {
             name="HomeScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
           {/* Notification screen */}
@@ -52,7 +55,7 @@ export default function App() {
             name="HealthScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -62,7 +65,7 @@ export default function App() {
             name="ExpenceScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -72,7 +75,7 @@ export default function App() {
             name="IncomeScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -82,7 +85,7 @@ export default function App() {
             name="LoginScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "zoom_in",
             }}
           />
 
@@ -90,6 +93,43 @@ export default function App() {
           <Stack.Screen
             component={RegisterationScreen}
             name="RegisterationScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_left",
+            }}
+          />
+
+          <Stack.Screen
+            component={HealthScreen}
+            name="Health"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
+          <Stack.Screen
+            component={DiseaseDetailsScreen}
+            name="DiseaseDetailsScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
+
+          {/* Cattles screen */}
+          <Stack.Screen
+            component={CattlesScreen}
+            name="CattleScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
+            }}
+          />
+
+          {/* Cattles detail screen */}
+          <Stack.Screen
+            component={CattleDetailScreen}
+            name="CattleDetailScreen"
             options={{
               headerShown: false,
               animation: "none",

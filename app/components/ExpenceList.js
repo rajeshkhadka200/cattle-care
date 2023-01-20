@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import React from "react";
-
+import React, { useEffect } from "react";
+import axios from "axios";
 const ExpenceList = () => {
   return (
     <>
@@ -30,6 +30,9 @@ const ExpenceList = () => {
 export default ExpenceList;
 
 const styles = StyleSheet.create({
+  col1: {
+    flex: 1,
+  },
   whiteBox: {
     borderRadius: 10,
     width: "90%",
@@ -53,13 +56,14 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 100,
+    alignSelf: "center",
   },
-  second_con: {
-    borderWidth: 2,
-    borderColor: "red",
+  col2: {
+    display: "flex",
+    width: "100%",
   },
   rate: {
+    marginLeft: 10,
     fontSize: 20,
-    marginLeft: "auto",
   },
 });

@@ -1,11 +1,22 @@
-import { View, Text, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Pressable,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../styles/Health.design.js";
-import DiseaseCard from "../components/DiseaseCard.js";
+import { styles } from "../styles/DiseaseDetails.design.js";
 import MainHeader from "../components/MainHeader.js";
 
-const HealthScreen = (navigation) => {
+const DiseaseDetailsScreen = ({ navigation, route }) => {
+  const makeCall = () => {
+    let number = `tel:0715256965`;
+    Linking.openURL(number);
+  };
   const data = [
     {
       id: 1,
@@ -80,30 +91,42 @@ const HealthScreen = (navigation) => {
       symp: "The disease is characterised by fever, anaemia, tachypnoea, depression, lethargy, jaundice and often eventual death.",
     },
   ];
+  const id = route.params.id;
+  const selectedOne = data.filter((item) => item.id === id);
+  console.log(selectedOne);
   return (
     <>
-      <SafeAreaView>
-        <ScrollView>
-          <MainHeader title={"Health"} />
+      <ScrollView>
+        <View style={[styles.container, { paddingTop: 30 }]}>
+          <MainHeader title={"details"} />
+          {/* daat */}
           <View style={styles.wrapper}>
-            <Text style={styles.heading}>Protect cattles</Text>
-            <Text style={styles.small_text}>
-              Cattles require scheduled vaccination and health care like we do.
-            </Text>
-
-            {/* wrapper for card */}
-            <View style={styles.con_disease}>
-              {data.map((data, i) => {
-                return (
-                  <DiseaseCard key={i} data={data} navigation={navigation} />
-                );
-              })}
+            <View style={styles.left}>
+              <Image source={selectedOne[0].image} style={styles.image} />
+            </View>
+            <View style={styles.right}>
+              <Text style={styles.heading}>{selectedOne[0].tittle}</Text>
+              <Text style={styles.smallText}>{selectedOne[0].desc}</Text>
             </View>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+          {/* main cause */}
+          <View style={styles.mainCause}>
+            <Text style={styles.heading}>Main Causes:</Text>
+            <Text style={styles.smallTextlower}>
+              {selectedOne[0].mainCause}
+            </Text>
+          </View>
+          <View style={styles.mainCause}>
+            <Text style={styles.heading}>Symptoms:</Text>
+            <Text style={styles.smallTextlower}>{selectedOne[0].symp}</Text>
+          </View>
+        </View>
+        <TouchableOpacity onPress={makeCall} style={styles.btn}>
+          <Text style={styles.txt_btn}>Call For Vaccination</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </>
   );
 };
 
-export default HealthScreen;
+export default DiseaseDetailsScreen;

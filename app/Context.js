@@ -6,9 +6,14 @@ export const cp = createContext();
 const Context = ({ children }) => {
   const [expensePop, setExpensePop] = useState(false);
   const [incomePop, setIncomePop] = useState(false);
+
+  const [user, setUser] = useState(null);
+
   return (
     <cp.Provider
       value={{
+        user,
+        setUser,
         popup: {
           expense: [expensePop, setExpensePop],
           income: [incomePop, setIncomePop],
