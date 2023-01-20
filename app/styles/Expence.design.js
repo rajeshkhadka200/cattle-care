@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   container: {
-    marginTop: 180,
+    marginTop: 30,
     marginBottom: 10,
     marginHorizontal: 20,
     // borderColor: "red",
@@ -36,8 +36,8 @@ export const styles = StyleSheet.create({
   },
   addContainer: {
     marginBottom: 20,
-    height: 50,
-    width: 50,
+    height: 65,
+    width: 65,
     borderRadius: 100,
     backgroundColor: "#FEBA47",
     display: "flex",
@@ -45,7 +45,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   plus: {
-    fontSize: 30,
+    fontSize: 40,
+    color: "#fff",
   },
 
   greenBox: {
@@ -56,9 +57,10 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100,
     flex: 1,
-    ovwerflow: "hidden",
+    overflow: "hidden",
     paddingVertical: 50,
-    borderWidth: 2,
-    borderColor: "red",
+  },
+  empty: {
+    height: 230,
   },
 });

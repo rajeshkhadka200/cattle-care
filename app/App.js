@@ -14,6 +14,7 @@ import ExpenceScreen from "./screens/ExpenceScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
+import DiseaseDetailsScreen from "./screens/DiseaseDetailsScreen.js";
 import CattlesScreen from "./screens/CattlesScreen.js";
 import CattleDetailScreen from "./screens/CattleDetails.js";
 
@@ -34,7 +35,7 @@ export default function App() {
             name="HomeScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -44,7 +45,7 @@ export default function App() {
             name="HealthScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -54,7 +55,7 @@ export default function App() {
             name="ExpenceScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -64,7 +65,7 @@ export default function App() {
             name="IncomeScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_right",
             }}
           />
 
@@ -74,7 +75,7 @@ export default function App() {
             name="LoginScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "zoom_in",
             }}
           />
 
@@ -84,7 +85,24 @@ export default function App() {
             name="RegisterationScreen"
             options={{
               headerShown: false,
-              animation: "none",
+              animation: "slide_from_left",
+            }}
+          />
+
+          <Stack.Screen
+            component={HealthScreen}
+            name="Health"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
+          <Stack.Screen
+            component={DiseaseDetailsScreen}
+            name="DiseaseDetailsScreen"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
             }}
           />
 
