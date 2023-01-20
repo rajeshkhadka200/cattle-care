@@ -8,7 +8,7 @@ import Back from "../assets/svg/goBack.svg";
 import Notification from "../assets/svg/notification.svg";
 import { useNavigation } from "@react-navigation/native";
 
-const MainHeader = ({ title }) => {
+const MainHeader = ({ title, notification = false }) => {
   const navigator = useNavigation();
 
   return (
@@ -23,17 +23,33 @@ const MainHeader = ({ title }) => {
         </Pressable>
       </View>
 
-      <Text style={styles.title}>{title}</Text>
+      <Text
+        style={[
+          styles.title,
+          notification
+            ? {
+                marginLeft: 50,
+              }
+            : {},
+        ]}
+      >
+        {title}
+      </Text>
 
-      <View style={styles.notification}>
-        <Pressable
-          onClick={() => {
-            navigator.navigate("NotificationScreen");
-          }}
-        >
-          <Notification />
-        </Pressable>
-      </View>
+      {notification ? (
+        ""
+      ) : (
+        <View style={[styles.notification]}>
+          <Pressable
+            onPress={() => {
+              console.log("Travelling to notif");
+              navigator.navigate("NotificationScreen");
+            }}
+          >
+            <Notification />
+          </Pressable>
+        </View>
+      )}
     </View>
   );
 };

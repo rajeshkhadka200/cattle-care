@@ -14,6 +14,7 @@ import ExpenceScreen from "./screens/ExpenceScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
+import NotificationScreen from "./screens/NotificationScreen.js";
 
 export default function App() {
   // creating the custom navigation stack
@@ -30,6 +31,15 @@ export default function App() {
           <Stack.Screen
             component={HomeScreen}
             name="HomeScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
+            }}
+          />
+          {/* Notification screen */}
+          <Stack.Screen
+            component={NotificationScreen}
+            name="NotificationScreen"
             options={{
               headerShown: false,
               animation: "none",
