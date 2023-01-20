@@ -6,7 +6,7 @@ export const cp = createContext();
 const Context = ({ children }) => {
   const [expensePop, setExpensePop] = useState(false);
   const [incomePop, setIncomePop] = useState(false);
-
+  const [gender, setGender] = useState(null);
   const [user, setUser] = useState(null);
 
   return (
@@ -18,6 +18,7 @@ const Context = ({ children }) => {
           expense: [expensePop, setExpensePop],
           income: [incomePop, setIncomePop],
         },
+        selectedCattle: [gender, setGender],
       }}
     >
       {children}

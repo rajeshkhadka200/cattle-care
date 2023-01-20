@@ -28,7 +28,6 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      //start loading
       setLoading(true);
 
       const { data } = await axios({

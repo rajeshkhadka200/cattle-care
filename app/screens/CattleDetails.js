@@ -15,17 +15,21 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
+import axios from "axios";
 
 import styles from "../styles/CattleDetailsScreen.design.js";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginInput from "../components/LoginInput";
 import Button from "../components/Button";
 import LightButton from "../components/LightButton";
+import { cp } from "../Context.js";
 
 const CattleDetailsScreen = () => {
-  const navigation = useNavigation();
-
+  const {
+    user,
+    selectedCattle: [gender, setGender],
+  } = useContext(cp);
   const [modalVisible, setModalVisible] = useState(false);
   const [price, setPrice] = useState(null);
 
@@ -36,102 +40,106 @@ const CattleDetailsScreen = () => {
     { label: "Female", value: "cow" },
   ];
 
-  const [gender, setGender] = useState("ox");
-
   const data = [
     {
-      name: "Darrel Khadka",
+      name: "Maley",
       age: "21 months old",
       gender: "cow",
     },
     {
-      name: "Rajesh Khadka",
-      age: "21 months old",
+      name: "Tarey",
+      age: "23 months old",
       gender: "cow",
     },
     {
-      name: "Rajesh Bachho",
+      name: "Gure",
       age: "21 months old",
       gender: "ox",
     },
     {
-      name: "Basanti",
-      age: "21 months old",
-      gender: "cow",
+      name: "Baccho",
+      age: "1 months old",
+      gender: "calves",
+    },
+    {
+      name: "tilke",
+      age: "27 months old",
+      gender: "ox",
     },
   ];
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [values, Setvalues] = useState({
+    name: "",
+    dob: "",
+    price: "",
+  });
+
+  console.log(values);
   const saveCattle = async () => {
-    console.log("saveCattle");
-
     try {
-      //start loading
       setLoading(true);
-
-      const { data } = await axios({
-        method: "post",
-        url: `http://157.245.106.197:5000/api/cattle/addcattle`,
-        data: {
+      const res = await axios.post(
+        `http://157.245.106.197:5000/api/cattle/addcattle`,
+        {
           user_id: user.id,
           name: values.name,
           dob: values.dob,
           gender: gender,
           cost: values.price,
-        },
-      });
-
-      console.log(data);
-
+        }
+      );
+      console.log(res.data);
       setModalVisible(!modalVisible);
-    } catch (error) {
-      handleError(error);
-      //   console.log(error);
-    } finally {
       setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  const handleError = (error) => {
-    const message = error.error || error.response.data.error || error.message;
-    setError(message);
-
-    setTimeout(() => {
-      setError("");
-    }, 5000);
-  };
-
+  let count = 0;
+  data.map((item) => {
+    if (gender === "AllGender") return (count = data.length);
+    item.gender == gender ? count++ : null;
+  });
   return (
     <View style={[styles.container, { paddingTop: 30 }]}>
-      <MainHeader title={"Cows"} />
+      <MainHeader title={gender} />
 
       <SafeAreaView>
         <ScrollView style={styles.container}>
-          <Text style={styles.totalNumbers}>Total Cows</Text>
-          <Text style={styles.lightTitle}>Your farm has 180 cows</Text>
+          <Text style={styles.totalNumbers}>
+            Total {gender === "AllGender" ? "Cattles" : gender}
+          </Text>
+          <Text style={styles.lightTitle}>
+            Your farm has {count} number of
+            {gender === "AllGender" ? "all Cattles" : " " + gender}
+          </Text>
 
           <View style={styles.cardContainer}>
-            {data.map(({ name, age }, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setSelected(data[index]);
-                  setModalVisible(true);
-                }}
-                style={styles.card}
-                key={index}
-              >
-                <View>
-                  <Text style={styles.name}>{name}</Text>
-                  <Text style={styles.age}>{age}</Text>
-                </View>
-                <Image
-                  source={require("../assets/cattles/gai_basanti.jpg")}
-                  style={styles.image}
-                ></Image>
-              </TouchableOpacity>
-            ))}
+            {data.map(
+              (item, index) =>
+                (item.gender === gender || gender === "AllGender") && (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setSelected(data[index]);
+                      setModalVisible(true);
+                    }}
+                    style={styles.card}
+                    key={index}
+                  >
+                    <View>
+                      <Text style={styles.name}>{item.name}</Text>
+                      <Text style={styles.age}>{item.age}</Text>
+                    </View>
+                    <Image
+                      source={require("../assets/cattles/gai_basanti.jpg")}
+                      style={styles.image}
+                    ></Image>
+                  </TouchableOpacity>
+                )
+            )}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -190,6 +198,7 @@ const CattleDetailsScreen = () => {
                 </View>
               </View>
             ) : (
+              // add wala
               <View
                 style={[
                   styles.popup,
@@ -206,17 +215,38 @@ const CattleDetailsScreen = () => {
 
                 <View style={styles.body}>
                   <LoginInput
+                    onChangeText={(text) => {
+                      Setvalues({
+                        ...values,
+                        name: text,
+                      });
+                    }}
+                    value={values.name}
                     placeholder="Basanti"
                     keyboardType={"default"}
                     label={"Name"}
                   />
                   <LoginInput
+                    onChangeText={(text) => {
+                      Setvalues({
+                        ...values,
+                        dob: text,
+                      });
+                    }}
+                    value={values.dob}
                     placeholder="2022-01-01"
                     label={"Date of Birth"}
                     keyboardType={"default"}
                   />
 
                   <LoginInput
+                    onChangeText={(text) => {
+                      Setvalues({
+                        ...values,
+                        price: text,
+                      });
+                    }}
+                    value={values.price}
                     placeholder="200"
                     keyboardType={"numeric"}
                     label={"Price"}
