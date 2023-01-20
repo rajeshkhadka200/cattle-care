@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { cp } from "../Context";
 
 const ExpenceList = ({ data }) => {
-  console.log(data.price);
   return (
     <>
       <View style={styles.whiteBox}>

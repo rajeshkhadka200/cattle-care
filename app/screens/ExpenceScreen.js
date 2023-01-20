@@ -12,37 +12,15 @@ const ExpenceScreen = () => {
     popup: {
       expense: [expensePop, setExpensePop],
     },
+    expense: [expense, setExpense],
   } = useContext(cp);
-
-  const expenceData = [
-    {
-      name: "Weat",
-      price: 1800,
-      date: "12/12/2020",
-    },
-    {
-      name: "Maize",
-      price: 2500,
-      date: "12/2/2020",
-    },
-    {
-      name: "Vaccine",
-      price: 1950,
-      date: "2/12/2020",
-    },
-    {
-      name: "Grass",
-      price: 2900,
-      date: "2/06/2020",
-    },
-  ];
   return (
     <>
       <View style={[{ paddingTop: 30 }]}>
         <MainHeader title={"Expenses"} />
         <View style={styles.mainContainer}>
           <View style={styles.container}>
-            <Text style={styles.rsHeading}>Rs. 9150</Text>
+            <Text style={styles.rsHeading}>Rs. 1500.59</Text>
             <Text style={styles.rsSmall}>Total Spendings</Text>
             <View style={styles.rightCon}>
               <Pressable
@@ -60,11 +38,9 @@ const ExpenceScreen = () => {
             contentContainerStyle={{ borderRadius: 30, overflow: "hidden" }}
             style={styles.greenBox}
           >
-            {expenceData.map((item, i) => {
-              console.log(item.name);
-              return <ExpenceList key={i} data={item} />;
+            {expense?.map((dat, index) => {
+              return <ExpenceList key={index} data={dat} />;
             })}
-
             <View style={styles.empty}></View>
           </ScrollView>
         </View>

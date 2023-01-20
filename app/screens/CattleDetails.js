@@ -29,6 +29,7 @@ const CattleDetailsScreen = () => {
   const {
     user,
     selectedCattle: [gender, setGender],
+    cattleInfo: [data, setData],
   } = useContext(cp);
   const [modalVisible, setModalVisible] = useState(false);
   const [price, setPrice] = useState(null);
@@ -38,34 +39,6 @@ const CattleDetailsScreen = () => {
   var radio_props = [
     { label: "Male", value: "ox" },
     { label: "Female", value: "cow" },
-  ];
-
-  const data = [
-    {
-      name: "Maley",
-      age: "21 months old",
-      gender: "cow",
-    },
-    {
-      name: "Tarey",
-      age: "23 months old",
-      gender: "cow",
-    },
-    {
-      name: "Gure",
-      age: "21 months old",
-      gender: "ox",
-    },
-    {
-      name: "Baccho",
-      age: "1 months old",
-      gender: "calves",
-    },
-    {
-      name: "tilke",
-      age: "27 months old",
-      gender: "ox",
-    },
   ];
 
   const [error, setError] = useState("");
@@ -99,8 +72,8 @@ const CattleDetailsScreen = () => {
     }
   };
   let count = 0;
-  data.map((item) => {
-    if (gender === "AllGender") return (count = data.length);
+  data?.map((item) => {
+    if (gender === "AllGender") return (count = data?.length);
     item.gender == gender ? count++ : null;
   });
   return (
@@ -118,7 +91,7 @@ const CattleDetailsScreen = () => {
           </Text>
 
           <View style={styles.cardContainer}>
-            {data.map(
+            {data?.map(
               (item, index) =>
                 (item.gender === gender || gender === "AllGender") && (
                   <TouchableOpacity
