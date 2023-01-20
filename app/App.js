@@ -14,6 +14,7 @@ import ExpenceScreen from "./screens/ExpenceScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
+import NotificationScreen from "./screens/NotificationScreen.js";
 import DiseaseDetailsScreen from "./screens/DiseaseDetailsScreen.js";
 import CattlesScreen from "./screens/CattlesScreen.js";
 import CattleDetailScreen from "./screens/CattleDetails.js";
@@ -36,6 +37,15 @@ export default function App() {
             options={{
               headerShown: false,
               animation: "slide_from_right",
+            }}
+          />
+          {/* Notification screen */}
+          <Stack.Screen
+            component={NotificationScreen}
+            name="NotificationScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
             }}
           />
 
