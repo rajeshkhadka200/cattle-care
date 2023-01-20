@@ -7,6 +7,7 @@ import {
   Pressable,
   Modal,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -15,9 +16,11 @@ import DropDownPicker from "react-native-dropdown-picker";
 //icons
 import Heart from "../assets/svg/heart.svg";
 import { cp } from "../Context";
+import axios from "axios";
 
 const ExpensePopup = () => {
   const {
+    user,
     popup: {
       expense: [expensePop, setExpensePop],
     },
@@ -70,15 +73,44 @@ const ExpensePopup = () => {
     },
   ]);
 
-  // data for sending the data
-  const [data, setdata] = useState({
-    cattle: d1value,
-    medicine: d2value,
-    healthCost: "",
-    foodCost: "",
-  });
-  console.log(data);
+  const [cost, setCost] = useState("");
   const [activeSelection, setActiveSelection] = useState("Health");
+
+  const handleFormSubmit = () => {
+    console.log("btn clicked");
+    // console.log(activeSelection);
+    if (activeSelection === "Health") {
+      console.log({
+        d1value,
+        d2value,
+        cost,
+      });
+      if (d1value == null || d2value == null || cost == "") return;
+
+      let d = new Date();
+      let year = d.getFullYear();
+      let month = d.getMonth();
+      let day = d.getDate();
+      let finalDate = `${year}-${month}-${day}`;
+
+      axios
+        .post(`http://157.245.106.197:5000/api/expence`, {
+          user: user.id,
+          amount: cost,
+          date: finalDate,
+          type: `${d1value} + ${d2value}`,
+        })
+        .catch((e) => {
+          console.log(e.response);
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            setExpensePop(false);
+          }
+        });
+    }
+  };
   return (
     <>
       <Modal
@@ -184,9 +216,20 @@ const ExpensePopup = () => {
               placeholder="90,000"
               style={styles.txtInput}
               placeholderTextColor={"#808281"}
+              value={cost}
+              onChangeText={(change) => {
+                setCost(change);
+              }}
             />
           </View>
-          <Text style={styles.addExpense}>Add Expense</Text>
+
+          <TouchableOpacity
+            onPress={() => {
+              handleFormSubmit();
+            }}
+          >
+            <Text style={styles.addExpense}>Add Expense</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
 
