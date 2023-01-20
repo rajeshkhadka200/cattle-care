@@ -3,25 +3,27 @@ import React, { useEffect } from "react";
 import axios from "axios";
 const ExpenceList = () => {
   return (
-    <View style={styles.whiteBox}>
-      <View style={styles.col1}>
-        <Text style={styles.tittle}>Marvin McKinney</Text>
-        <Text style={styles.smallDate}>8/2/19</Text>
-      </View>
+    <>
+      <View style={styles.whiteBox}>
+        <View style={styles.col1}>
+          <Text style={styles.tittle}>Marvin McKinney</Text>
+          <Text style={styles.smallDate}>8/2/19</Text>
+        </View>
 
-      <View style={styles.second_con}>
-        <View style={styles.col2}>
-          <Image
-            style={styles.image}
-            source={require("../assets/cattles/calf_gante.jpg")}
-          />
-          <Text>Aashish</Text>
+        <View style={styles.second_con}>
+          <View style={styles.col2}>
+            <Image
+              style={styles.image}
+              source={require("../assets/cattles/calf_gante.jpg")}
+            />
+            <Text>Aashish</Text>
+          </View>
+        </View>
+        <View style={styles.col3}>
+          <Text style={styles.rate}>300 /-</Text>
         </View>
       </View>
-      <View style={styles.col3}>
-        <Text style={styles.rate}>300 /-</Text>
-      </View>
-    </View>
+    </>
   );
 };
 
