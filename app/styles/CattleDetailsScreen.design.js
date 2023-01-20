@@ -65,6 +65,48 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: "#fff",
   },
+  head: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  popup: {
+    backgroundColor: "#fff",
+    width: "100%",
+    height: 420,
+    position: "absolute",
+    bottom: 0,
+    padding: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 100,
+      height: 100,
+    },
+    shadowOpacity: 1,
+    elevation: 5,
+  },
+  popupImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    objectFit: "cover",
+  },
+  popupTitle: {
+    fontSize: 32,
+    fontWeight: "bolder",
+    color: "#000",
+  },
+  pupupback: {
+    backgroundColor: "#000000aa",
+    width: "200%",
+    height: "200%",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 1,
+  },
 });
 
 export default styles;
