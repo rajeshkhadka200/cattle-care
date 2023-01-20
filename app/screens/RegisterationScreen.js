@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -7,19 +7,32 @@ import { cp } from "../Context.js";
 
 import styles from "../styles/LoginScreen.design.js";
 
-const Registration = () => {
+const Registration = ({ navigation }) => {
   const [values, setValues] = useState({
     farmName: "",
     phone: "",
     password: "",
   });
 
-  const { user, setUser } = useContext(cp);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  console.log(user);
+  const handleError = (error) => {
+    const message = error.error || error.response.data.error || error.message;
+    setError(message);
+
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
+
+  const { setUser } = useContext(cp);
 
   const handleRegister = async () => {
     try {
+      //start loading
+      setLoading(true);
+
       const { data } = await axios({
         method: "post",
         url: `http://157.245.106.197:5000/api/user/register`,
@@ -36,9 +49,13 @@ const Registration = () => {
         phone: data.data.phone,
       });
 
-      console.log(data);
+      //redirect
+      navigation.navigate("HomeScreen");
     } catch (error) {
+      handleError(error);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,14 +101,18 @@ const Registration = () => {
           label="Password"
         />
 
+        {/* Error text */}
+        <Text style={styles.errorText}>{error}</Text>
+
         {/* Registration button */}
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Register </Text>
+          {loading && <ActivityIndicator color="white" />}
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secButton]}
-          onPress={() => console.warn("Don't have an account ?")}
+          onPress={() => navigation.navigate("LoginScreen")}
         >
           <Text style={[styles.buttonText, styles.secButtonText]}>
             Already have an account ?

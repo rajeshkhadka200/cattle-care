@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import LoginInput from "../components/LoginInput";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -7,18 +7,30 @@ import { cp } from "../Context.js";
 
 import styles from "../styles/LoginScreen.design.js";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [values, setValues] = useState({
     phone: "",
     password: "",
   });
 
-  const { user, setUser } = useContext(cp);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useContext(cp);
 
-  console.log(user);
+  const handleError = (error) => {
+    const message = error.error || error.response.data.error || error.message;
+    setError(message);
+
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
 
   const handleLogin = async () => {
     try {
+      //start loading
+      setLoading(true);
+
       const { data } = await axios({
         method: "post",
         url: `http://157.245.106.197:5000/api/user/login`,
@@ -34,9 +46,13 @@ const Login = () => {
         phone: data.data.phone,
       });
 
-      console.log(data);
+      //redirect
+      navigation.navigate("HomeScreen");
     } catch (error) {
+      handleError(error);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,14 +90,18 @@ const Login = () => {
           label="Password"
         />
 
+        {/* Error text */}
+        <Text style={styles.errorText}>{error}</Text>
+
         {/* Login button */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Login </Text>
+          {loading && <ActivityIndicator color="white" />}
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secButton]}
-          onPress={() => console.warn("Don't have an account ?")}
+          onPress={() => navigation.navigate("RegisterationScreen")}
         >
           <Text style={[styles.buttonText, styles.secButtonText]}>
             Don't have an account ?

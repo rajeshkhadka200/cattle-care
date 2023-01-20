@@ -15,6 +15,8 @@ import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
 import DiseaseDetailsScreen from "./screens/DiseaseDetailsScreen.js";
+import CattlesScreen from "./screens/CattlesScreen.js";
+import CattleDetailScreen from "./screens/CattleDetails.js";
 
 export default function App() {
   // creating the custom navigation stack
@@ -101,6 +103,26 @@ export default function App() {
             options={{
               headerShown: false,
               animation: "slide_from_right",
+            }}
+          />
+
+          {/* Cattles screen */}
+          <Stack.Screen
+            component={CattlesScreen}
+            name="CattleScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
+            }}
+          />
+
+          {/* Cattles detail screen */}
+          <Stack.Screen
+            component={CattleDetailScreen}
+            name="CattleDetailScreen"
+            options={{
+              headerShown: false,
+              animation: "none",
             }}
           />
         </Stack.Navigator>

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+    flexDirection: "row",
   },
   buttonText: {
     color: "#fff",
@@ -21,6 +22,10 @@ const styles = StyleSheet.create({
   },
   detailText: {
     color: "#808080",
+    fontSize: 14,
+  },
+  errorText: {
+    color: "red",
     fontSize: 14,
   },
   form: {
