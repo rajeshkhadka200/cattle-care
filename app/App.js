@@ -14,6 +14,7 @@ import ExpenceScreen from "./screens/ExpenceScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterationScreen from "./screens/RegisterationScreen";
+import DiseaseDetailsScreen from "./screens/DiseaseDetailsScreen.js";
 
 export default function App() {
   // creating the custom navigation stack
@@ -89,6 +90,14 @@ export default function App() {
           <Stack.Screen
             component={HealthScreen}
             name="Health"
+            options={{
+              headerShown: false,
+              animation: "slide_from_right",
+            }}
+          />
+          <Stack.Screen
+            component={DiseaseDetailsScreen}
+            name="DiseaseDetailsScreen"
             options={{
               headerShown: false,
               animation: "slide_from_right",

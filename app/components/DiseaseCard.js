@@ -1,10 +1,16 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/core";
 
-const DiseaseCard = ({ data }) => {
-  console.log(data.image);
+const DiseaseCard = ({ data, navigation }) => {
+  const navigator = useNavigation();
+  const redirect = () => {
+    console.log(navigation);
+    // redirect to diseasedetails page with data
+    navigator.navigate("DiseaseDetailsScreen", { id: data.id });
+  };
   return (
-    <View style={styles.diseaseCard}>
+    <TouchableOpacity onPress={redirect} style={styles.diseaseCard}>
       <View style={styles.left}>
         <Text style={styles.heading}>{data.tittle}</Text>
         <Text style={styles.subHeading}>{data.desc}</Text>
@@ -12,7 +18,7 @@ const DiseaseCard = ({ data }) => {
       <View style={styles.right}>
         <Image style={styles.image} source={data.image} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

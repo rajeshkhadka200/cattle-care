@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import React from "react";
-
+import React, { useEffect } from "react";
+import axios from "axios";
 const ExpenceList = () => {
   return (
     <View style={styles.whiteBox}>

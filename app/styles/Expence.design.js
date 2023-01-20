@@ -57,10 +57,10 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100,
     flex: 1,
-    ovwerflow: "hidden",
+    overflow: "hidden",
     paddingVertical: 50,
   },
   empty: {
-    height: 140,
+    height: 230,
   },
 });
