@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from "react-native";
 import MainHeader from "../components/MainHeader";
 
@@ -18,7 +19,7 @@ const CattleDetailsScreen = () => {
       <MainHeader title={"Cows"} />
 
       <SafeAreaView>
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           <Text style={styles.totalNumbers}>Total Cows</Text>
           <Text style={styles.lightTitle}>Your farm has 180 cows</Text>
 
@@ -37,7 +38,7 @@ const CattleDetailsScreen = () => {
               ></Image>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
 
       <TouchableOpacity style={styles.add}>
