@@ -45,30 +45,18 @@ export const addExpence = (req, res) => {
 // Retrieve all expence from the database. by user id
 export const getAllExpence = (req, res) => {
   try {
-    const user = req.params.user;
-
-    const query = Expence.find({ user: user });
-
-    query.exec((err, data) => {
-      if (err)
-        res.status(500).send({
-          success: false,
-          message:
-            err.message || "Some error occurred while retrieving expence.",
-        });
-      else {
-        res.status(200).send({
-          success: true,
-          data: data,
-        });
-      }
+    let usr_id = req.params.user;
+    console.log(usr_id);
+    let expence = Expence.find({ user: usr_id });
+    return res.status(200).json({
+      success: true,
+      data: expence,
     });
   } catch (error) {
-    res.status(500).send({
+    return res.status(400).json({
       success: false,
-      message: error.message || "Some error occurred while retrieving expence.",
+      message: "Some error occurred while retrieving expence.",
     });
-    console.log(error);
   }
 };
 
@@ -76,6 +64,7 @@ export const getAllExpence = (req, res) => {
 export const getExpenceById = (req, res) => {
   try {
     const id = req.params.id;
+    console.log("this is the id that i got " + id);
     const query = Expence.findById(id);
     query.exec((err, data) => {
       if (err) {

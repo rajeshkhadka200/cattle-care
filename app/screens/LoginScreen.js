@@ -46,6 +46,8 @@ const Login = ({ navigation }) => {
         phone: data.data.phone,
       });
 
+      // set user in async storage
+
       //redirect
       navigation.navigate("HomeScreen");
     } catch (error) {

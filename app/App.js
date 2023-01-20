@@ -23,7 +23,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   // default route
-  const [defaultScreen, setDefaultScreen] = useState("HomeScreen");
+  const [defaultScreen, setDefaultScreen] = useState("LoginScreen");
 
   return (
     <Context>
@@ -75,7 +75,7 @@ export default function App() {
             name="LoginScreen"
             options={{
               headerShown: false,
-              animation: "zoom_in",
+              animation: "none",
             }}
           />
 
