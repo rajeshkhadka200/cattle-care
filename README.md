@@ -4,3 +4,8 @@ Introducing CattleCare, the all-in-one solution for managing and tracking your c
 
 # ERD and DFD 
 https://drive.google.com/file/d/1NW6rwatiFC8qd81K3NqU6shMVtjBxOHG/view?usp=share_link
+
+
+
+# Preview of the application design
+![applicationPreview](https://pbs.twimg.com/media/Fw838PRXoAAGI3C?format=jpg&name=large)
